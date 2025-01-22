@@ -1,5 +1,6 @@
 import models.Filme;
 import models.Serie;
+import models.calculos.CalculadoraDeTempo;
 
 public class Principal {
     public static void main(String[] args) {
@@ -29,6 +30,21 @@ public class Principal {
         lost.setEpisodiosPorTemporada(10);
         lost.setMinutosPorEpisodio(50);
         System.out.println("Duração para maratonar Lost: " + lost.getDuracaoEmMinutos());
+
+
+
+        Filme meuFilme2 = new Filme();
+        meuFilme2.setNome("O poderoso chefão");
+        meuFilme2.setAnoDeLancamento(1970);
+        meuFilme2.setDuracaoEmMinutos(190);
+
+        CalculadoraDeTempo calculadora = new CalculadoraDeTempo();
+
+        calculadora.inclui(meuFilme);
+        calculadora.inclui(meuFilme2);
+        calculadora.inclui(lost);
+        
+        System.out.println(calculadora.getTempoTotal());
 
 
     }
