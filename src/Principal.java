@@ -1,6 +1,8 @@
+import models.Episodio;
 import models.Filme;
 import models.Serie;
 import models.calculos.CalculadoraDeTempo;
+import models.calculos.FiltroRecomendacao;
 
 public class Principal {
     public static void main(String[] args) {
@@ -16,9 +18,6 @@ public class Principal {
         meuFilme.avalia(10);
         System.out.println("Total de avaliações: " + meuFilme.getTotalDeAvaliacoes());
         System.out.println(meuFilme.pegaMedia());
-        //meuFilme.somaDasAvaliacoes = 10;
-        //meuFilme.totalDeAvaliacoes = 1;
-        //System.out.println(meuFilme.pegaMedia());
 
         System.out.println("--------------");
 
@@ -31,12 +30,25 @@ public class Principal {
         lost.setMinutosPorEpisodio(50);
         System.out.println("Duração para maratonar Lost: " + lost.getDuracaoEmMinutos());
 
+        System.out.println("--------------");
 
 
         Filme meuFilme2 = new Filme();
-        meuFilme2.setNome("O poderoso chefão");
-        meuFilme2.setAnoDeLancamento(1970);
+        meuFilme2.setNome("Avatar");
+        meuFilme2.setAnoDeLancamento(2023);
         meuFilme2.setDuracaoEmMinutos(190);
+        meuFilme2.exibeFichaTecnica();
+        meuFilme2.avalia(10);
+        meuFilme2.avalia(10);
+        meuFilme2.avalia(10);
+        meuFilme2.avalia(10);
+
+        System.out.println("Total de avaliações: " + meuFilme2.getTotalDeAvaliacoes());
+        System.out.println(meuFilme2.pegaMedia());
+
+
+        System.out.println("--------------");
+
 
         CalculadoraDeTempo calculadora = new CalculadoraDeTempo();
 
@@ -46,6 +58,14 @@ public class Principal {
         
         System.out.println(calculadora.getTempoTotal());
 
+        FiltroRecomendacao filtro = new FiltroRecomendacao();
+        filtro.filtra(meuFilme2);
+
+        Episodio episodio = new Episodio();
+        episodio.setNumero(1);
+        episodio.setSerie(lost);
+        episodio.setTotalVisualizacoes(300);
+        filtro.filtra(episodio);
 
     }
 }
